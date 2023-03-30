@@ -1,0 +1,9 @@
+Permutation-based approaches to ML explainability create perverse observations - a 100,000 sq ft house with just one bathroom.  Problem when features are correlated
+I think Shaply values are computationally expensive as one must test a large number of models with different combos of inputs. 
+This might be robust to correlations and less expensive than Shaply.  Let Z be the feature of concern, X1 be the other features.  Process
+  Estimate Zhat=E(Z|X1) - like multiple imputation as if Z were missing.  Preserves correlations between Z and Y.  Can use random forest or other method that is robust to interactions.
+  Compare distribution of E(Y|X1, Zhat) and E(Y|X1, Z).  The difference is the additional information that Z brings to the model.  
+ Statistical independence is E(Y|Z)=E(Y), i.e. Z has no information about Y. If the distributions of E(Y|X1, Zhat) and E(Y|X1, Z) are indistinguishable
+ then Y is independent of Z. (?)  We can formally test the importance of Z with a KS statistic for the two distributions.  
+ Can we use the KS test as a formal statistical test of whether Z is important?  Is the KS statistic a good measure for cross sectionalimportance of features?
+Q:  can one just drop Z and look at the model?  How is this better? What if it is an important feature with important interactions...
